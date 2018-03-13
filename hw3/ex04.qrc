@@ -1,0 +1,14 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>baseline.vert</file>
+    <file>experiment.vert</file>
+    <file>ex04a.frag</file>
+    <file>baseline.frag</file>
+    <file>experiment.frag</file>
+    <file>cruiser.obj</file>
+    <file>cruiser.mtl</file>
+    <file>cruiser.png</file>
+    <file>crate.png</file>
+    <file>pi.png</file>
+</qresource>
+</RCC>

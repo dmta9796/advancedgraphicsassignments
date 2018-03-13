@@ -1,0 +1,33 @@
+HW 3: investigation of performance
+
+how to run:
+- go to directory
+- qmake hw03.pro
+- make
+- ./hw03
+
+Report on performance
+The program contains a base as a baseline which is the Blinn-Phong pixel lighting and the experimental textures.
+The first experiment was to see the run time between my linux VM and native windows.
+-VM		: the average framerate was 3500 for cube with range 2000-4500 and 850 with range 500-1000 for teapot 
+-Native	: the average framerade was 3800 with range of 1500-4000 for the cube and 800 with range of 500-1000 for the teapot
+for both the framerate was erratic and there wasn't distinguishable 
+results from the qt creator running natively and the vmware workstation.
+
+The rest of the experiments are done in the VM.
+Another experiment was to check if passing in variables from main to the blinn function does anything
+-baseline	: The average is about 4000 fps with range of 2500-5000 fps
+-experiment	: The average is about 3800 fps with range of 2300-4500 fps
+Thus the result is inconclusive 
+
+
+Another experiment was to check if there is a large performance drop by having branching on the linux VM 
+remove ifs	(multiply by (a>b)	: the average framerate was about 3000 with range of 1500-4000 fps and for cube and 600 for teapot with range of 400-900
+only if							: the average framerate was about 3500 with range of 2000-4000 fps and for cube and 600 for teapot with range of 400-900
+adding unneeded else			: the average framerate was about 2500 with range of 1500-4000 fps and for the cube and 500 for the teapot with range of 300-800 fps
+Thus branching does produce a worse result for the shader but the fps computation is quite erratic which means 
+that there might not be anything of note. The biggest differance is the switch from the cube to the teapot which 
+is explained by the higher polygon count of the teapot. 
+
+removing branching and having everything done on the main function produces the result
+of a framerate average of 3800 with a range of 2600-4800 fps
