@@ -1,0 +1,13 @@
+NDC to RGB shader
+to compile run the commands
+- qmake hw01.pro
+- make
+- ./hw01
+
+instuctions to use
+-sliders move the cube in discrete intervals depeding on the w value
+-added dropdown to a Rocket model that works with lighting. 
+
+took me about 3 hours to finish as I had issue knowing what the result is meant to look and needed to familarize myself with qt.
+-added my small rocket model from graphics
+-added sliders to for changing the cube
