@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ex12a.frag</file>
+        <file>ex12b.frag</file>
+        <file>ex12c.frag</file>
+        <file>ex12d.frag</file>
+        <file>ex12e.frag</file>
+        <file>ex12f.frag</file>
+        <file>ex12g.frag</file>
+        <file>ex12h.frag</file>
+        <file>invertcolors.frag</file>
+        <file>mix.frag</file>
+        <file>interpolate.frag</file>
+        <file>vigrette.frag</file>
+        <file>gaussianblur.frag</file>
+        <file>swirl.frag</file>
+        <file>displacement.frag</file>
+        <file>default.vert</file>
+        <file>oldtv.frag</file>
+    </qresource>
+</RCC>
