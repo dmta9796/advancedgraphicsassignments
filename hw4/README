@@ -1,0 +1,20 @@
+Hw04: OpenGL 4 shaders by Dmitriy Tarasov
+how to run (linux)
+-go to directory
+-qmake hw04.pro
+-make
+-./hw04
+
+how to run (windows)
+-get qt creator with library GWmin32,,
+-run qmake
+-click run
+I had work3ed on this assignment for 8 hours since I treid
+getting a faster lighting result by using the programming
+guides lighting code which I wasn't able to debug.
+After I scraped the idea and started from scratch I was able
+to get the assignment done in roughly an hour by following the
+ex04 blinn phong lighting example.
+
+Had to run my code on windows qt creator as the VM doesn't
+have opengl 3 or 4.
