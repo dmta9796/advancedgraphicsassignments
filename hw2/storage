@@ -1,0 +1,103 @@
+// Fragment shader for drawing the Mandelbrot set
+// Adapted from Orange book
+// Discard pixels inside the set
+
+varying vec2  ModelPos;
+varying float LightIntensity;
+uniform float time;
+//failed experiments (noise function, trying differential equation, trying realistic model with bessel function)
+//float rand(vec2 st)
+//{
+	//return fract(sin(dot(st.xy,vec2(12.9898,78.233)))* 43758.5453123);
+//}
+//// 2D Noise based on Morgan McGuire @morgan3d
+//// https://www.shadertoy.com/view/4dS3Wd
+//float noise (in vec2 st) {
+    //vec2 i = floor(st);
+    //vec2 f = fract(st);
+
+    //// Four corners in 2D of a tile
+    //float a = rand(i);
+    //float b = rand(i + vec2(1.0, 0.0));
+    //float c = rand(i + vec2(0.0, 1.0));
+    //float d = rand(i + vec2(1.0, 1.0));
+
+    //// Smooth Interpolation
+
+    //// Cubic Hermine Curve.  Same as SmoothStep()
+    //vec2 u = f*f*(3.0-1.0*f);//*sin(time)*cos(ModelPos);
+    //// u = smoothstep(0.,1.,f);
+
+    //// Mix 4 coorners porcentages
+    //return (mix(a, b, u.x) +(c - a)* u.y * (1.0 - u.x) +(d - b) * u.x * u.y);
+//}
+//vec3 diffeq(vec3 xyz,vec3 rsb)
+//{
+	//float r=rsb.r;
+	//float s=rsb.s;
+	//float b=rsb.b;
+	//float x=xyz.x;
+	//float y=xyz.y;
+	//float z=xyz.z;
+	//float dx= s*(y-x);
+	//float dy= r*x-y-x*z;
+	//float dz= x*y - b*z;
+	//x+=dx*time;
+	//y+=dy*time;
+	//z+=dz*time;
+	//return vec3(x,y,z);
+//}
+int factorial(int num)
+{
+	int product=1;
+	while(num>1)
+	{
+		product*=num;
+		num--;
+	}
+	return product;
+}
+int gammafunction(int num)
+{
+	return factorial(num-1);
+}
+float besselfunction(float r, int alpha,int m,int iter)
+{
+	int i;
+	float falpha=float(alpha);
+	for(i=0;i<iter;i++)
+	{
+		float fi=float(i);
+		float pow1=pow(-1.0,fi);
+		int gamma = gammafunction((i+alpha+1));
+		float pow2=pow(r/2.0,(2.0*fi+falpha));
+		r=(pow1/float(gamma))*pow2;
+	}
+	return r;
+}
+
+void main()
+{
+    vec2 st = gl_FragCoord.xy;//ModelPos;
+    vec2 center=vec2(-0.25,-0.25);
+    vec2 position=ModelPos;
+	float posx =position.x+center.x;
+	float posy =position.y+center.y;
+	int m=2;
+	int alpha=1;
+
+    // Scale the coordinate system to see
+    // some noise in action
+    vec2 pos = vec2(st);
+	//vec3 test= diffeq(vec3(gl_FragCoord.x,gl_FragCoord.y,gl_FragCoord.z),vec3(2.66,36.0,10.0));
+    // Use the noise function
+    //float n = noise(pos);
+    float r=posx*posx+posy*posy; //sqrt not needed as it still looks like waves
+    //float eq=cos(3.0*time+12.0*r); // good equation
+    float eq = 20.0*(cos(time)+sin(time))*sin(1.0*posx/r)*sin(3.0*posy/r);
+    //float eq2=10.0*(cos(10.0*time-10.0*r));
+    //float eq=10.0*besselfunction(r,alpha,m,3);//*cos(float(alpha)*10.0*time);
+	gl_FragColor=vec4(vec2(eq),0.5,1.0);
+    //gl_FragColor =vec4(eq,eq2,1.0, 1.0);// vec4((vec3(n)*sin(5.0*time-5.0*r), 1.0);//*LightIntensity;
+}
+
